@@ -1,5 +1,8 @@
 from django.db import models
 from django.urls import reverse #Used to generate URLs by reversing the URL patterns
+
+from django.core.urlresolvers import reverse
+
 import uuid # Required for unique book instances
 from datetime import date
 
@@ -88,6 +91,8 @@ class BookInstance(models.Model):
     # (one for every book you can find in the library).
     id = models.UUIDField(primary_key=True, default=uuid.uuid4,
          help_text="Unique ID for this particular book across whole library")
+
+    # A book can have multiple bookinstances
     book = models.ForeignKey('Book', on_delete=models.SET_NULL, null=True)
     imprint = models.CharField(max_length=200)
 
