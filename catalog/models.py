@@ -120,6 +120,7 @@ class BookInstance(models.Model):
 
         #return '%s (%s)' % (self.id, self.book.title)
         return '{0} ({1})'.format(self.id, self.book.title)
+        #return '{0}'.format(self.id)
 
 
 
