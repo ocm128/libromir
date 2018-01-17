@@ -6,6 +6,8 @@ from django.core.urlresolvers import reverse
 import uuid # Required for unique book instances
 from datetime import date
 
+from django.contrib.auth.models import User
+
 # Create your models here.
 
 class Genre(models.Model):
@@ -100,6 +102,19 @@ class BookInstance(models.Model):
     # available after being borrowed or in maintenance).
     due_back = models.DateField(null=True, blank=True)
 
+     # Deudor
+    borrower = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+
+
+    @property
+    def is_overdue(self):
+        # Tell if a particular book instance is overdue (Atrasado)
+
+        if self.due_back and date.today() > self.due_back:
+            return True
+        return False
+
+
     LOAN_STATUS = (
         ('m', 'Maintenance'),
         ('o', 'On loan'),
@@ -112,6 +127,9 @@ class BookInstance(models.Model):
 
     class Meta:
         ordering = ["due_back"]
+
+        # Define a permission to allow a user to mark that a book has been returned
+        permissions = (("can_mark_returned", "Set book as returned"),)
 
     def __str__(self):
         """
