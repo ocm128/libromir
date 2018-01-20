@@ -11,6 +11,12 @@
             {{author.date_of_death}}
         {% endif %}
     </p>
+    <p>
+        {% if perms.catalog.can_mark_returned  %}
+            <a href="{% url 'author-update' author.pk %}" class="btn btn-primary">Update Author</a>
+            <a href="{% url 'author-delete' author.pk %}" class="btn btn-warning">Delete Author</a>
+        {% endif %}
+    </p>
     <div style="margin-left:20px;margin-top:20px">
         <h3>Books</h3>
 

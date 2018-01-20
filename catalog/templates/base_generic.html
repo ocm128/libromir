@@ -39,15 +39,17 @@
                                 {% endif %}
                         </ul>
 
-                            {% if user.is_staff %}
-                               <hr />
-                               <ul class="sidebar-nav">
-                               <li>Staff</li>
-                               {% if perms.catalog.can_mark_returned %}
-                               <li><a href="{% url 'all-borrowed' %}">All borrowed</a></li>
+                                <!--{#% if user.is_staff %}-->
+                                {% if perms.catalog.can_mark_returned %}
+                                   <hr />
+                                   <ul class="sidebar-nav">
+                                   <li>Staff</li>
+                                   <!--{#% if perms.catalog.can_mark_returned %}-->
+                                   <li><a href="{% url 'all-borrowed' %}">All borrowed</a></li>
+                                   <li><a href="{% url 'author-create' %}">Create Author</a></li>
                                {% endif %}
                                </ul>
-                            {% endif %}
+                                <!--{#% endif %}-->
 
                     {% endblock %}
                 </div>
