@@ -134,19 +134,22 @@ def renew_book_librarian(request, pk):
     return render(request, 'catalog/book_renew_librarian.html', {'form': form, 'bookinst': book_inst})
 
 
-class AuthorCreate(CreateView):
+class AuthorCreate(PermissionRequiredMixin, CreateView):
     model = Author
     fields = '__all__'
     initial = {'date_of_birth' : '05/01/2018', }
+    permission_required = 'catalog.can_mark_returned'
 
 
-class AuthorUpdate(UpdateView):
+class AuthorUpdate(PermissionRequiredMixin, UpdateView):
     model = Author
     fields = {'first_name', 'last_name', 'date_of_birth', 'date_of_death'}
+    permission_required = 'catalog.can_mark_returned'
 
 
-class AuthorDelete(DeleteView):
+class AuthorDelete(PermissionRequiredMixin, DeleteView):
     model = Author
+    permission_required = 'catalog.can_mark_returned'
 
     # Method 1
     #sucess_url = reverse_lazy('authors')
@@ -154,4 +157,26 @@ class AuthorDelete(DeleteView):
     # Method 2:
     def get_success_url(self):
         return reverse('authors')
+
+
+class BookCreate(PermissionRequiredMixin, CreateView):
+    model = Book
+    fields = '__all__'
+    permission_required = 'catalog.can_mark_returned'
+
+
+class BookUpdate(PermissionRequiredMixin, UpdateView):
+    model = Book
+    fields = '__all__'
+    permission_required = 'catalog.can_mark_returned'
+
+
+class BookDelete(PermissionRequiredMixin, DeleteView):
+    model = Book
+    permission_required = 'catalog.can_mark_returned'
+
+    def get_sucess_url(self):
+        return reverse('books')
+
+
 

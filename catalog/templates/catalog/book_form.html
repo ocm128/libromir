@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <br>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table><br>
+        <input type="submit" class="btn btn-primary"  value="Confirmar">
+    </form>
+{% endblock %}
