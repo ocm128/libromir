@@ -1,13 +1,13 @@
 .directory
 creden.txt
-#local_settings.py
+local_settings.py
 
 # Python bytecode
 *.pyc
 __pycache_
 
 # sqlite3 db
-db.sqlite3
+*.sqlite3
 
 # Ignorar los siguientes directorios_
 env/
