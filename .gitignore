@@ -1,3 +1,4 @@
+
 .directory
 creden.txt
 local_settings.py
@@ -11,3 +12,4 @@ __pycache_
 
 # Ignorar los siguientes directorios_
 env/
+
