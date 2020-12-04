@@ -42,7 +42,7 @@ class Book(models.Model):
     """
     title = models.CharField(max_length=200)
     author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True)
-    # Foreign Key used because book can only have one author, but authors can have multiple books
+    # Foreign Key used because a book can only have one author, but authors can have multiple books
     # In practice a book might have multiple authors, but not in this implementation!
     # Author as a string rather than object because it hasn't been declared yet in the file.
     # null=True, which allows the database to store a Null value if no author is selected,
